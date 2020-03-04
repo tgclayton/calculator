@@ -5,6 +5,7 @@ document.querySelectorAll('#calcFace td') //td's respond with content when click
 .forEach(e => e.addEventListener('click', input))
 
 function input(){
+    
     let inp = this.innerText
     let show = document.getElementById('screen')
     if (inp === ""){ //click on screen does nothing
@@ -22,13 +23,15 @@ function input(){
         display = []
         getCalc(calc)
         calculate(workNum)
+        display = []
+        return
     }
       else {  //
     display.push(inp)
     calc.push(inp)
     // console.log('clicked ' + this.innerText)
 }
-// console.log('display array contains: ' + display)
+ console.log('display array contains: ' + display)
 // console.log('calc array contains: ' + calc)
     show.innerText = display.join("")
 }
@@ -57,28 +60,38 @@ function getCalc(arr) { //turns the combined input into an array of workable ent
 
 
 function calculate(arr) {
+    console.log(arr)
     let current = Number(arr[0])
     let next = ''
     let working = current
     for (i = 1; i < arr.length; i++) {
         if (isNaN(Number(arr[i]))) {
+            // console.log('wasnt a number')
             next = arr[i + 1]
-            switch (arr[i]) {
-                case 'x': working = current *= next
+            // console.log(arr[i + 1])
+            let exp = arr[i]
+            console.log('current value is ' + arr[i])
+            switch (exp) {
+                case '*': working = current *= next
+                console.log('it was multiplied and working is ' + working)
                     break;
                 case '/': working = current /= next
+                console.log('it was divided and working is ' + working)
                     break;
                 case '+': working = current += next
+                console.log('it was added and working is ' + working)
                     break;
                 case '-': working = current -= next
+                console.log('it was subtracted and working is ' + working)
                     break;
-            }
-        } else if (i === arr.length - 1) {
-            document.getElementById('screen').innerText = working
+                    default:
+                }
         } else {
             current = Number(arr[i])
         }
     }
+    console.log(working)
+    document.getElementById('screen').innerText = working
     }
 
 // combine all the numbers sequences into single numbers
