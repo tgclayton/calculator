@@ -33,7 +33,7 @@ function input(){
     show.innerText = display.join("")
 }
 
-function getCalc(arr) { //turns the combined input into an array ofworkable entries (numbers and operators)
+function getCalc(arr) { //turns the combined input into an array of workable entries (numbers and operators)
     let temp = []
     let working = []
     for (i = 0; i < arr.length; i++) {
@@ -42,16 +42,18 @@ function getCalc(arr) { //turns the combined input into an array ofworkable entr
             working.push(temp.join(''))
             workNum = working
         } else if (isNaN(arr[i])) {
+            if ( arr[i] != '.'){
             working.push(temp.join(''))
             working.push(arr[i])
             temp = []
-
+        } else {
+            temp.push(arr[i])
+        }
         } else {
             temp.push(arr[i])
         }
     }
 }
-
 
 
 function calculate(arr) {
