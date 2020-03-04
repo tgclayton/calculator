@@ -57,21 +57,30 @@ function getCalc(arr) { //turns the combined input into an array of workable ent
 
 
 function calculate(arr) {
-    let current = ''
+    let current = Number(arr[0])
     let next = ''
- console.log(calc)
-for ( i = 0; i < calc.length; i++){
-    if (calc[i] != NaN){
-        current += calc[i]
-        console.log('index ' + [i] + ' was a number')
+    let working = current
+    for (i = 1; i < arr.length; i++) {
+        if (isNaN(Number(arr[i]))) {
+            next = arr[i + 1]
+            switch (arr[i]) {
+                case 'x': working = current *= next
+                    break;
+                case '/': working = current /= next
+                    break;
+                case '+': working = current += next
+                    break;
+                case '-': working = current -= next
+                    break;
+            }
+        } else if (i === arr.length - 1) {
+            document.getElementById('screen').innerText = working
+        } else {
+            current = Number(arr[i])
+        }
     }
-    // current = calc[i]
-    // next = calc[i+1]
-    // console.log('current ' + i + ' is ' + current)
-    // console.log('next ' + i + ' is ' + next)
+    }
 
-}
 // combine all the numbers sequences into single numbers
 //operate the math functions between them
 //return the result to display array and show it
-}
