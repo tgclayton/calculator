@@ -88,11 +88,11 @@ function getCalc(arr) { //turns the combined input into an array of workable ent
     let temp = []
     let working = []
     for (i = 0; i < arr.length; i++) {
-        if (i === arr.length - 1) {
+        if (i === arr.length - 1) { //if entry is a number it is added to a string of immediately previous numbers
             temp.push(arr[i])
             working.push(temp.join(''))
             workNum = working
-        } else if (isNaN(arr[i])) {
+        } else if (isNaN(arr[i])) { //if entry is an operator previous numbers are add as a single number and operator is added as an entry on its own between them
             if (arr[i] != '.') {
                 working.push(temp.join(''))
                 working.push(arr[i])
@@ -120,7 +120,7 @@ function calculate(arr) {
     for (i = 1; i < arr.length; i++) {
         if (isNaN(Number(arr[i]))) {
             // console.log('wasnt a number')
-            next = arr[i + 1]
+            next = Number(arr[i + 1])
             // console.log(arr[i + 1])
             let exp = arr[i]
             // console.log('current value is ' + arr[i] + ' and its type is ' + typeof(arr[i]))
