@@ -61,7 +61,7 @@ function input() {  // takes  a pressed button and acts on it
         console.log(!isNaN(prev))
         if (typeof(prev) === 'number'){
             console.log('answer was  a number')
-            display.push(prev)
+            display.push('Ans')
             calc.push(prev)
             numPressed = true
             } else {
