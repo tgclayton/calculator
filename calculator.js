@@ -9,16 +9,16 @@ document.querySelectorAll('#calcFace td') //td's respond with content when click
     .forEach(e => e.addEventListener('click', input))
 document.getElementById('screen').removeEventListener('click', input) //stops clickcing on the screen from doing anything
 
-function input() {  // takes  a pressed button and acts on it 
+function input() {  // takes  a pressed button and acts on it ÷
     let inp = this.innerText
     let show = document.getElementById('screen')
     // console.log(numPressed)
     console.log('input is ' + inp)
-    if (numPressed === false && (inp === "x" || inp === "-" || inp === "+" || inp === "/")) {
+    if (numPressed === false && (inp === "x" || inp === "-" || inp === "+" || inp === "÷")) {
         console.log("initial operator")
         return
     }
-    if (inp === 'x' || inp === '-' || inp === '+' || inp === '/') { // deals with operator input
+    if (inp === 'x' || inp === '-' || inp === '+' || inp === '÷') { // deals with operator input
         // console.log('operator pressed and inp is ' + inp)
         numPressed = false
         calc.push(inp)
@@ -99,7 +99,7 @@ function calculate(arr) {
                 case 'x': working *= next
                     //  console.log('it was multiplied and working is ' + working)
                     break;
-                case '/': working /= next
+                case '÷': working /= next
                     // console.log('it was divided and working is ' + working)
                     break;
                 case '+': working += next
