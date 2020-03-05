@@ -17,10 +17,6 @@ function input() {  // takes  a pressed button and acts on it
     // console.log(numPressed)
     // console.log('input is ' + inp)
     if (numPressed === false && (inp === "x" || inp === "-" || inp === "+" || inp === "÷")) {
-        // console.log("operator key blocked")
-        // console.log("numPressed was " + numPressed)
-        // console.log("useAnswer was " + useAnswer)
-        
         return
     }
     if (inp === 'x' || inp === '-' || inp === '+' || inp === '÷') { // deals with operator input
@@ -46,7 +42,9 @@ function input() {  // takes  a pressed button and acts on it
             document.getElementById('screen').innerText = '0'
             return
         }
-    } else if (inp === '=') {  //runs and displays the calculation
+    } else if (inp === '%'){
+    return
+    }else if (inp === '=') {  //runs and displays the calculation
         if (numPressed === true) {
             getCalc(calc)
             calculate(workNum)
@@ -58,7 +56,18 @@ function input() {  // takes  a pressed button and acts on it
             // console.log('calc is ' + calc)
             return
         }
-    } else {  // handles regular numbers and '.' symbol
+    }else if (inp === 'Ans'){
+        console.log('answer key pressed ans answer = ' + prev + typeof(prev))
+        console.log(!isNaN(prev))
+        if (typeof(prev) === 'number'){
+            console.log('answer was  a number')
+            display.push(prev)
+            calc.push(prev)
+            numPressed = true
+            } else {
+                return
+            }
+    }  else {  // handles regular numbers and '.' symbol
         if (useAnswer === true && !isNaN(Number(display[0]))){
             useAnswer = false
         }
@@ -101,7 +110,7 @@ function getCalc(arr) { //turns the combined input into an array of workable ent
 function calculate(arr) {
     // console.log(arr)
     if (useAnswer === true) {
-        console.log('prev was add to start of calc and its value was ' + prev)
+        // console.log('prev was add to start of calc and its value was ' + prev)
         arr[0] = prev
     }
     let current = Number(arr[0])
