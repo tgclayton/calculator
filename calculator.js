@@ -2,12 +2,12 @@ var display = []
 var calc = []
 var workNum = []
 var prev = ""
-var numPressed = false
-var op = true
+var numPressed = false // if true last butt
+var op = true //if false last button pressed was a number and '=' can proceed
 document.querySelectorAll('#calcFace td') //td's respond with content when clicked
     .forEach(e => e.addEventListener('click', input))
 
-function input() {
+function input() {  // takes  a pressed button and acts on it 
     let inp = this.innerText
     let show = document.getElementById('screen')
     // console.log(numPressed)
@@ -16,14 +16,15 @@ function input() {
         console.log("initial operator")
         return
     }
-    if (inp === 'x' || inp === '-' || inp === '+' || inp === '/') {
-        console.log('operator pressed and inp is ' + inp)
-        op = true
+    if (inp === 'x' || inp === '-' || inp === '+' || inp === '/') { // deals with operator input
+        // console.log('operator pressed and inp is ' + inp)
+        numPressed = false
         calc.push(inp)
         inp = " " + inp + " "
         display.push(inp)
         console.log(inp)
     } else if (inp === "") { //click on screen does nothing
+    
         return
     } else if (inp === 'AC') { //AC button resets
         display = []
@@ -34,8 +35,8 @@ function input() {
     } else if (inp === 'CE') { //CE button clears last entry
         display.pop()
         calc.pop()
-    } else if (inp === '=') {
-        if (numPressed === true && op === false) {
+    } else if (inp === '=') {  //runs and displays the calculation
+        if (numPressed === true) {
             display = []
             getCalc(calc)
             calculate(workNum)
@@ -43,7 +44,7 @@ function input() {
             calc = []
             return
         }
-    }  else {  //
+    } else {  //
         numPressed = true
         op = false
         display.push(inp)
