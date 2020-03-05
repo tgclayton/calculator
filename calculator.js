@@ -45,6 +45,7 @@ function input() {  // takes  a pressed button and acts on it
     } else if (inp === '%'){
     return
     }else if (inp === '=') {  //runs and displays the calculation
+        console.log('calc array is ' + calc)
         if (numPressed === true) {
             getCalc(calc)
             calculate(workNum)

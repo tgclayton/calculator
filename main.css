@@ -20,3 +20,7 @@ td {
   border: 4px solid black;
 
 }
+
+td:active {
+  background-color: rgb(102, 101, 101);
+}
