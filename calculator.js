@@ -2,43 +2,50 @@ var display = []
 var calc = []
 var workNum = []
 var prev = ""
+var numPressed = false
+var op = true
 document.querySelectorAll('#calcFace td') //td's respond with content when clicked
     .forEach(e => e.addEventListener('click', input))
 
 function input() {
     let inp = this.innerText
     let show = document.getElementById('screen')
-   
-    if (display !== [] && inp === "x" || inp === "-" || inp === "+" || inp === "/" )
-    return
-    if (inp === "") { //click on screen does nothing
+    // console.log(numPressed)
+    // console.log(inp)
+    if (numPressed === false && (inp === "x" || inp === "-" || inp === "+" || inp === "/")) {
+        console.log("initial operator")
+        return
+    }
+    if (inp === 'x' || inp === '-' || inp === '+' || inp === '/') {
+        console.log('operator pressed and inp is ' + inp)
+        op = true
+        calc.push(inp)
+        inp = " " + inp + " "
+        display.push(inp)
+        console.log(inp)
+    } else if (inp === "") { //click on screen does nothing
         return
     } else if (inp === 'AC') { //AC button resets
         display = []
         calc = []
         workNum = []
         prev = ''
+        numPressed = false
     } else if (inp === 'CE') { //CE button clears last entry
         display.pop()
         calc.pop()
-    } else if (inp === 'x') { //x button turned into * symbol in calc array
-        inp = " " + inp + " "
-        calc.push('*')
-        display.push(inp)
     } else if (inp === '=') {
-        display = []
-        getCalc(calc)
-        calculate(workNum)
-        display = []
-        calc = []
-        return
-    } else if (inp === '/') {
-        inp = " " + inp + " "
-        calc.push('/')
-        display.push(inp)
-    }
-    else {  //
-
+        if (numPressed === true && op === false) {
+            display = []
+            getCalc(calc)
+            calculate(workNum)
+            display = []
+            calc = []
+            return
+        }
+    }  else {  //
+        numPressed = true
+        op = false
         display.push(inp)
         calc.push(inp)
         // console.log('clicked ' + this.innerText)
@@ -72,25 +79,25 @@ function getCalc(arr) { //turns the combined input into an array of workable ent
 
 
 function calculate(arr) {
-    console.log('prev is ' + prev)
+    // console.log('prev is ' + prev)
     if (typeof (prev) === 'number') {
-        console.log('prev is a number')
+        // console.log('prev is a number')
         arr.unshift(prev)
     }
-
     let current = Number(arr[0])
     let next = ''
     let working = current
+    console.log(arr)
     for (i = 1; i < arr.length; i++) {
         if (isNaN(Number(arr[i]))) {
             // console.log('wasnt a number')
             next = arr[i + 1]
             // console.log(arr[i + 1])
             let exp = arr[i]
-            // console.log('current value is ' + arr[i])
+            // console.log('current value is ' + arr[i] + ' and its type is ' + typeof(arr[i]))
             switch (exp) {
-                case '*': working *= next
-                    // console.log('it was multiplied and working is ' + working)
+                case 'x': working *= next
+                    //  console.log('it was multiplied and working is ' + working)
                     break;
                 case '/': working /= next
                     // console.log('it was divided and working is ' + working)
@@ -107,10 +114,10 @@ function calculate(arr) {
             current = Number(arr[i])
         }
     }
-    console.log('working is ' + working + ' its type is ' + typeof (working))
+    // console.log('working is ' + working + ' its type is ' + typeof (working))
     document.getElementById('screen').innerText = working
     prev = working
-    console.log('workNum = ' + workNum)
+    // console.log('workNum = ' + workNum)
 }
 
 // combine all the numbers sequences into single numbers

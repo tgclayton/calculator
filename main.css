@@ -3,8 +3,8 @@ background-color: rgb(99, 97, 97);
 }
 
 td {
-  width: 2em;
-  height: 2em;
+  width: 3em;
+  height: 3em;
   padding: 3px;
   border:  1px solid black;
   text-align: center;
@@ -13,8 +13,8 @@ td {
 
 #calcFace {
   position: absolute;
-  /* width: 10%; */
-  left: 45%;
+  width: 20%; 
+  left: 40%;
   top: 30%;
   border: 4px solid black;
 
