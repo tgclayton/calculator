@@ -1,17 +1,19 @@
-var display = []
-var calc = []
-var workNum = []
-var prev = ""
+var display = [] // stores the input to be displayed on screen
+var calc = [] //stores the inputs to be compiled into a calculable array
+var workNum = [] //stores the currently calculated nswer during the calculate function
+var prev = "" //store the last answer calculated
 var numPressed = false // if true last butt
 var op = true //if false last button pressed was a number and '=' can proceed
+
 document.querySelectorAll('#calcFace td') //td's respond with content when clicked
     .forEach(e => e.addEventListener('click', input))
+document.getElementById('screen').removeEventListener('click', input) //stops clickcing on the screen from doing anything
 
 function input() {  // takes  a pressed button and acts on it 
     let inp = this.innerText
     let show = document.getElementById('screen')
     // console.log(numPressed)
-    // console.log(inp)
+    console.log('input is ' + inp)
     if (numPressed === false && (inp === "x" || inp === "-" || inp === "+" || inp === "/")) {
         console.log("initial operator")
         return
@@ -23,9 +25,6 @@ function input() {  // takes  a pressed button and acts on it
         inp = " " + inp + " "
         display.push(inp)
         console.log(inp)
-    } else if (inp === "") { //click on screen does nothing
-    
-        return
     } else if (inp === 'AC') { //AC button resets
         display = []
         calc = []
