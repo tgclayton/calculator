@@ -3,7 +3,7 @@ var calc = [] //stores the inputs to be compiled into a calculable array
 var workNum = [] //stores the currently calculated nswer during the calculate function
 var prev = "" //store the last answer calculated
 var numPressed = false // if true last butt
-var op = true //if false last button pressed was a number and '=' can proceed
+// var op = true //if false last button pressed was a number and '=' can proceed
 var useAnswer = false
 
 document.querySelectorAll('#calcFace td') //td's respond when clicked

@@ -9,6 +9,7 @@ td {
   border:  1px solid black;
   text-align: center;
   background-color: rgb(201, 198, 198);
+  overflow: hidden;
 }
 
 #calcFace {
@@ -22,5 +23,5 @@ td {
 }
 
 td:active {
-  background-color: rgb(102, 101, 101);
+  background-color: rgb(121, 119, 119);
 }
