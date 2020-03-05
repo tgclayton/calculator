@@ -11,15 +11,16 @@ document.querySelectorAll('#calcFace td') //td's respond when clicked
 
 document.getElementById('screen').removeEventListener('click', input) //stops clickcing on the screen from doing anything
 
-function input() {  // takes  a pressed button and acts on it ÷
+function input() {  // takes  a pressed button and acts on it 
     let inp = this.innerText
     let show = document.getElementById('screen')
     // console.log(numPressed)
     // console.log('input is ' + inp)
-    if ((numPressed === false && useAnswer === false) && (inp === "x" || inp === "-" || inp === "+" || inp === "÷")) {
-        console.log("operator key blocked")
-        console.log("numPressed was " + numPressed)
-        console.log("useAnswer was " + useAnswer)
+    if (numPressed === false && (inp === "x" || inp === "-" || inp === "+" || inp === "÷")) {
+        // console.log("operator key blocked")
+        // console.log("numPressed was " + numPressed)
+        // console.log("useAnswer was " + useAnswer)
+        
         return
     }
     if (inp === 'x' || inp === '-' || inp === '+' || inp === '÷') { // deals with operator input
@@ -53,7 +54,7 @@ function input() {  // takes  a pressed button and acts on it ÷
             display = []
             calc = []
             workNum = []
-            numPressed = false
+            numPressed = true
             // console.log('calc is ' + calc)
             return
         }
@@ -98,10 +99,10 @@ function getCalc(arr) { //turns the combined input into an array of workable ent
 
 
 function calculate(arr) {
-    console.log('useAnswer is ' + useAnswer)
+    // console.log(arr)
     if (useAnswer === true) {
         console.log('prev was add to start of calc and its value was ' + prev)
-        arr.unshift(prev)
+        arr[0] = prev
     }
     let current = Number(arr[0])
     let next = ''
