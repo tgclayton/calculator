@@ -1,11 +1,11 @@
 var display = []
 var calc = []
 var workNum = []
+var prev = ""
 document.querySelectorAll('#calcFace td') //td's respond with content when clicked
 .forEach(e => e.addEventListener('click', input))
 
 function input(){
-    
     let inp = this.innerText
     let show = document.getElementById('screen')
     if (inp === ""){ //click on screen does nothing
@@ -13,6 +13,8 @@ function input(){
     } else if (inp === 'AC'){ //AC button resets
         display = []
         calc = []
+        workNum = []
+        prev = ''
     } else if ( inp === 'CE'){ //CE button clears last entry
         display.pop()
         calc.pop()
@@ -24,6 +26,7 @@ function input(){
         getCalc(calc)
         calculate(workNum)
         display = []
+        calc = []
         return
     }
       else {  //
@@ -31,7 +34,7 @@ function input(){
     calc.push(inp)
     // console.log('clicked ' + this.innerText)
 }
- console.log('display array contains: ' + display)
+//  console.log('display array contains: ' + display)
 // console.log('calc array contains: ' + calc)
     show.innerText = display.join("")
 }
@@ -60,7 +63,12 @@ function getCalc(arr) { //turns the combined input into an array of workable ent
 
 
 function calculate(arr) {
-    console.log(arr)
+console.log('prev is ' + prev)
+    if (typeof(prev) === 'number'){
+        console.log('prev is a number')
+        arr.unshift(prev)
+    }
+    
     let current = Number(arr[0])
     let next = ''
     let working = current
@@ -70,19 +78,19 @@ function calculate(arr) {
             next = arr[i + 1]
             // console.log(arr[i + 1])
             let exp = arr[i]
-            console.log('current value is ' + arr[i])
+            // console.log('current value is ' + arr[i])
             switch (exp) {
-                case '*': working = current *= next
-                console.log('it was multiplied and working is ' + working)
+                case '*': working  *= next
+                // console.log('it was multiplied and working is ' + working)
                     break;
-                case '/': working = current /= next
-                console.log('it was divided and working is ' + working)
+                case '/': working  /= next
+                // console.log('it was divided and working is ' + working)
                     break;
-                case '+': working = current += next
-                console.log('it was added and working is ' + working)
+                case '+': working  += next
+                // console.log('it was added and working is ' + working)
                     break;
-                case '-': working = current -= next
-                console.log('it was subtracted and working is ' + working)
+                case '-': working  -= next
+                // console.log('it was subtracted and working is ' + working)
                     break;
                     default:
                 }
@@ -90,8 +98,10 @@ function calculate(arr) {
             current = Number(arr[i])
         }
     }
-    console.log(working)
+    console.log('working is ' + working + ' its type is ' + typeof(working))
     document.getElementById('screen').innerText = working
+    prev = working
+    console.log('workNum = ' + workNum)
     }
 
 // combine all the numbers sequences into single numbers
