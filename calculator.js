@@ -31,6 +31,8 @@ function input() {  // takes  a pressed button and acts on it ÷
         workNum = []
         prev = ''
         numPressed = false
+        show.innerHTML = 0
+        return
     } else if (inp === 'CE') { //CE button clears last entry
         display.pop()
         calc.pop()
