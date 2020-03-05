@@ -8,6 +8,9 @@ document.querySelectorAll('#calcFace td') //td's respond with content when click
 function input() {
     let inp = this.innerText
     let show = document.getElementById('screen')
+   
+    if (display !== [] && inp === "x" || inp === "-" || inp === "+" || inp === "/" )
+    return
     if (inp === "") { //click on screen does nothing
         return
     } else if (inp === 'AC') { //AC button resets
